@@ -45,3 +45,33 @@ def load_and_process_data():
     
     return pd.DataFrame(all_data)
 
+def process_ppg_data(ppg_data, gt_data, patient_id, hand, spo2_columns):
+    processed_data = []
+
+    # Align gt and ppg data 
+    min_length = min(len(ppg_data), len(gt_data) * 30)
+    num_seconds = min_length//30
+
+    for second in range(num_seconds):
+        start_frame = second * 30
+        end_frame = start_point + 30
+        if end_frame > len(ppg_data):
+            break
+
+        # Calculate the average RGB values for 30 frames
+        frame_data = ppg_data.iloc[start_frame:end_frame]
+        avg_r = frame_data['R'].mean()
+        avg_g = frame_data['G'].mean()
+        avg_b = frame_data['B'].mean()
+
+        # Get corresponding gt data
+        if second < len(gt_data):
+            gt_row = gt_data.iloc[second]
+
+            # For each SpO2 reading, create a summary line. Also, exclude N/A values
+            for spo2_col in spo2_columns:
+                if spo2_col and pd.notna(gt_row[spo2_col]) and gt_row[spo2_col] > 0;
+                    processed_data.append({
+                        'patient_id': patient_id, 'R': avg_r, 'G': avg_g, 'B': avg_b, 'which_hand': hand, 'corresponding_SpO2': gt_row[spo2_col]})
+    
+    return processed_data
