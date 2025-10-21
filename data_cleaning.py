@@ -71,7 +71,7 @@ def process_ppg_data(ppg_data, gt_data, patient_id, hand, spo2_columns):
 
             # For each SpO2 reading, create a summary line. Also, exclude N/A values
             for spo2_col in spo2_columns:
-                if spo2_col and pd.notna(gt_row[spo2_col]) and gt_row[spo2_col] > 0;
+                if spo2_col in gt_row and pd.notna(gt_row[spo2_col]) and gt_row[spo2_col] > 0:
                     processed_data.append({
                         'patient_id': patient_id, 'R': avg_r, 'G': avg_g, 'B': avg_b, 'which_hand': hand, 'corresponding_SpO2': gt_row[spo2_col]})
     
