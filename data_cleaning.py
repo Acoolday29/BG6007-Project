@@ -55,7 +55,7 @@ def process_ppg_data(ppg_data, gt_data, patient_id, hand, spo2_columns):
 
     for second in range(num_seconds):
         start_frame = second * 30
-        end_frame = start_point + 30
+        end_frame = start_frame + 30
         if end_frame > len(ppg_data):
             break
 
