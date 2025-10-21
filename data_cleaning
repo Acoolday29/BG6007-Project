@@ -1,2 +1,12 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+from pathlib import Path
+
+# Directories
+gt_dir = Path("data/gt")
+left_dir = Path("data/ppg-csv/Left")
+right_dir = Path("data/ppg-csv/Right")
+
+
+
