@@ -75,7 +75,23 @@ def process_ppg_data(ppg_data, gt_data, patient_id, hand, spo2_columns):
                         'patient_id': patient_id, 'R': avg_r, 'G': avg_g, 'B': avg_b, 'which_hand': hand, 'corresponding_SpO2': gt_row[spo2_col]})
     
     return processed_data
-        
+
+
+def main():
+    df = load_and_process_data()
+
+    if df.empty:
+        print("Error, not receiving any info")
+        return
+
+    output_file = "cleaned_data.csv"
+    df.to_csv(output_file, index = False)
+    
+    return df
+
+if __name__ == "__main__":
+    df = main()
+
 
 
   
