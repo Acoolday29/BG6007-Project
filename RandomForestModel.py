@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import matplotlib.pyplot as plt
 
 # Load cleaned dataset
 def load_cleaned_data():
@@ -26,3 +28,11 @@ def train_RF(x_train, y_train, x_test, y_test):
     min_samples_leaf = 1,
     random_state = 46,
     n_jobs = 1)
+
+  # Train RF model
+  rf_model.fit(x_train, y_train)
+
+  # Train/test predictions
+  y_train_pred = rf_model.predict(x_train)
+  y_test_pred = rf_model.predict(x_test)
+  
