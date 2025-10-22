@@ -21,9 +21,15 @@ def features_and_labels(df):
 
 # Train random forest model
 def train_RF(x_train, y_train, x_test, y_test):
+  # Divide 80% training group and 20% testing group
+  x_train, x_test, y_train, y_test = train_test_split(
+        features, labels, 
+        test_size=0.2, 
+        random_state=46)
+  
   # Create RF model
   rf_model = RandomForestRegressor(
-    n_estimator = 100,
+    n_estimators = 100,
     max_depth = None,
     min_samples_split = 2,
     min_samples_leaf = 1,
@@ -36,4 +42,18 @@ def train_RF(x_train, y_train, x_test, y_test):
   # Train/test predictions
   y_train_pred = rf_model.predict(x_train)
   y_test_pred = rf_model.predict(x_test)
+
+  # Evaluate model by MAE, MSE and R^2
+  train_mae = mean_absolute_error(y_train, y_train_pred)
+  test_mae = mean_absolute_error(y_test, y_test_pred)
+  
+  train_mse = mean_squared_error(y_train, y_train_pred)
+  test_mse = mean_squared_error(y_test, y_test_pred)
+  
+  train_r2 = r2_score(y_train, y_train_pred)
+  test_r2 = r2_score(y_test, y_test_pred)
+
+  return rf_model, x_train, x_test, y_train, y_test, y_train_pred, y_test_pred
+
+
   
