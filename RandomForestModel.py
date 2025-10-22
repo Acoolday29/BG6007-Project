@@ -18,3 +18,11 @@ def features_and_labels(df):
 
 # Train random forest model
 def train_RF(x_train, y_train, x_test, y_test):
+  # Create RF model
+  rf_model = RandomForestRegressor(
+    n_estimator = 100,
+    max_depth = None,
+    min_samples_split = 2,
+    min_samples_leaf = 1,
+    random_state = 46,
+    n_jobs = 1)
