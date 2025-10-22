@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 
 # Load cleaned dataset
 def load_cleaned_data():
-  print("This is data after cleaning:")
   df = pd.read_csv('cleaned_data.csv')
 
   return df
@@ -20,7 +19,7 @@ def features_and_labels(df):
   return features, labels
 
 # Train random forest model
-def train_RF(x_train, y_train, x_test, y_test):
+def train_RF(features, labels):
   # Divide 80% training group and 20% testing group
   x_train, x_test, y_train, y_test = train_test_split(
         features, labels, 
