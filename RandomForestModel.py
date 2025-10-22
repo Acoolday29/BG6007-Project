@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
 # Load cleaned dataset
@@ -35,4 +36,6 @@ def train_RF(x_train, y_train, x_test, y_test):
   # Train/test predictions
   y_train_pred = rf_model.predict(x_train)
   y_test_pred = rf_model.predict(x_test)
+
+  return rf_model
   
