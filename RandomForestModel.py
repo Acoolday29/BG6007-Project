@@ -64,7 +64,6 @@ def train_RF(features, labels):
   return rf_model, x_train, x_test, y_train, y_test, y_train_pred, y_test_pred
 
 def plot_results(y_test, y_test_pred, y_train, y_train_pred):
-  fig, axes = plt.subplots(2, 2, figsize = (15, 12))
   # Reality vs prediction scatterplot
   s_plot = plt.scatter(y_test, y_test_pred, alpha = 0.5)
   plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', lw = 2)
@@ -72,6 +71,16 @@ def plot_results(y_test, y_test_pred, y_train, y_train_pred):
   plt.ylabel("Predicted SpO2")
   plt.title("Random Forest: True vs Prediced SpO2 (test set)")
   plt.show()
+
+  # Residual plot
+  residuals = y_test - y_test_pred
+  r_plot = plt.scatter(y_test_pred, residuals, alpha = 0.5)
+  plt.hlines(y = 0, xmin = y_test_pred.min(), xmax = y_test_pred.max(), colors = 'r', linestyles = 'dashed')
+  plt.xlabel("Predicted SpO2")
+  plt.ylabel("Residuals")
+  plt.title("Random Forest: Prediced SpO2 vs Residuals (test set)")
+  plt.show()
+
 
 if __name__ == "__main__":
   df = load_cleaned_data()
