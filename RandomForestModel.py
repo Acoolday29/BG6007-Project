@@ -52,6 +52,13 @@ def train_RF(features, labels):
   train_r2 = r2_score(y_train, y_train_pred)
   test_r2 = r2_score(y_test, y_test_pred)
 
+  # Check for overfitting
+  overfit_gap = train_mae - test_mae
+  if overfit_gap < -0.5:
+    print("Overfitting may exist")
+  else:
+    print("Pass overfitting test")
+
   print(f"training set - MAE: {train_mae:.3f}, MSE: {train_mse:.3f}, R²: {train_r2:.3f}")
   print(f"testing set - MAE: {test_mae:.3f}, MSE: {test_mse:.3f}, R²: {test_r2:.3f}")
   return rf_model, x_train, x_test, y_train, y_test, y_train_pred, y_test_pred
