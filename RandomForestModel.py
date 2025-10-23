@@ -81,6 +81,13 @@ def plot_results(y_test, y_test_pred, y_train, y_train_pred):
   plt.title("Random Forest: Prediced SpO2 vs Residuals (test set)")
   plt.show()
 
+  # Residual distribution histogram
+  plt.hist(residuals, bins = 30, edgecolor = 'k', alpha = 0.7)
+  plt.xlabel("Residuals")
+  plt.ylabel("Frequency")
+  plt.title("Random Forest: Residual Distribution (test set)")
+  plt.show()
+
 
 if __name__ == "__main__":
   df = load_cleaned_data()
