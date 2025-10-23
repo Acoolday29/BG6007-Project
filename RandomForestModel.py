@@ -63,10 +63,21 @@ def train_RF(features, labels):
   print(f"testing set - MAE: {test_mae:.3f}, MSE: {test_mse:.3f}, R²: {test_r2:.3f}")
   return rf_model, x_train, x_test, y_train, y_test, y_train_pred, y_test_pred
 
+def plot_results(y_test, y_test_pred, y_train, y_train_pred):
+  fig, axes = plt.subplots(2, 2, figsize = (15, 12))
+  # Reality vs prediction scatterplot
+  s_plot = plt.scatter(y_test, y_test_pred, alpha = 0.5)
+  plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', lw = 2)
+  plt.xlabel("True SpO2")
+  plt.ylabel("Predicted SpO2")
+  plt.title("Random Forest: True vs Prediced SpO2 (test set)")
+  plt.show()
+
 if __name__ == "__main__":
   df = load_cleaned_data()
   features, labels = features_and_labels(df)
   rf_model, x_train, x_test, y_train, y_test, y_train_pred, y_test_pred = train_RF(features, labels)
+  plot_results(y_test, y_test_pred, y_train, y_train_pred)
 
 
   
