@@ -69,7 +69,7 @@ def plot_results(y_test, y_test_pred, y_train, y_train_pred):
   plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', lw = 2)
   plt.xlabel("True SpO2")
   plt.ylabel("Predicted SpO2")
-  plt.title("Random Forest: True vs Prediced SpO2 (test set)")
+  plt.title("Random Forest: True vs Predicted SpO2 (test set)")
   plt.show()
 
   # Residual plot
@@ -78,7 +78,7 @@ def plot_results(y_test, y_test_pred, y_train, y_train_pred):
   plt.hlines(y = 0, xmin = y_test_pred.min(), xmax = y_test_pred.max(), colors = 'r', linestyles = 'dashed')
   plt.xlabel("Predicted SpO2")
   plt.ylabel("Residuals")
-  plt.title("Random Forest: Prediced SpO2 vs Residuals (test set)")
+  plt.title("Random Forest: Predicted SpO2 vs Residuals (test set)")
   plt.show()
 
   # Residual distribution histogram
